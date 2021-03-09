@@ -1,0 +1,64 @@
+---
+title: "Gapminder"
+author: "Angela Xu"
+date: "09/03/2021"
+output: html_document
+---
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tinytex)
+library(tidyverse)
+library(gapminder)
+library(dplyr)
+data(gapminder)
+```
+
+## Introduction
+
+In this document,we will be exploring the Gapminder dataset.
+
+## Observations of Gapminder
+
+### Countries with life expectancy less than 30
+
+There are two countries with life expectancy of less than 30 in the dataset, namely:
+
+* Afgahnistan in 1952; and
+
+* Rwanda in 1992
+
+    
+```{r lifexplt30, echo=FALSE}
+
+gapminder %>% filter(lifeExp<30)
+
+```
+
+### Countries with life expectancy greater than 81
+
+There are five countries with life expectancy greater than 81 in the dataset. Two of the countries achieved expectancy greater than 81 twice since the year 2000. 
+
+``` {r lifeexpgt81, echo=FALSE}
+
+gapminder %>% filter(lifeExp>81)
+
+```
+
+### Life Expectancy by continent in 2007
+
+Africa is the only continent where 75% of the countries have life expectancy of less than 70 years. 
+
+Of the five continents, only Africa's has 75% of its countries having less than 70 years. Oceania has the highest life expectancy but that is due to it being made up of Australia and New Zealand.
+
+```{r lifeexp2007, echo = FALSE}
+
+a <- filter(gapminder, year == 2007)
+
+boxplot(a$lifeExp~ a$continent, ylab = "Life Expectancy")
+
+
+```
+
